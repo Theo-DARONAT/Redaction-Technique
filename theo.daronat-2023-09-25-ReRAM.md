@@ -7,7 +7,7 @@ date: 2023-09-25T14:41:00+02:00
 
 author: "DARONAT Théo"
 
-tags: ["ReRAM", "mémoire", "news"]
+tags: ["ReRAM", "RRAM", "mémoire", "news"]
 
 ## Show the Table Of Content
 showToc: true
@@ -45,7 +45,7 @@ d’**oxyde métallique**.
 
 Ce métal est un matériau conducteur, le courant peut facilement passer entre
 deux morceaux liés.
-L’oxyde métallique, quant à lui, est un **matériau isolant** dit **dialectrique**
+L’oxyde métallique, quant à lui, est un **matériau isolant** dit **diélectrique**
 (ne contenant pas de charge électrique).
 
 C’est grâce au procédé d’[**oxydo-réduction**](https://fr.wikipedia.org/wiki/R%C3%A9action_d%27oxydor%C3%A9duction)
@@ -61,10 +61,11 @@ deux électrodes.
 
 
 Voilà comment cela fonctionne :
+
 - Quand une tension électrique précise est appliquée (tension **Set**) au niveau
-  des électrodes, un **filament se crée** dans l’oxyde métallique, reliant
-  les deux électrodes, faisant passer la cellule d’un état **très résistant**
-  à un état peu **résistant**.
+des électrodes, un **filament se crée** dans l’oxyde métallique, reliant
+les deux électrodes, faisant passer la cellule d’un état **très résistant**
+à un état peu **résistant**.
 - Et inversement, lorsqu’une autre tension précise est appliquée (tension **Reset**),
 le **filament se brise** et la cellule repasse à un état **très résistant**.
 
@@ -107,16 +108,17 @@ au rang de révolution, si ce n’est de meilleur performance ?
 Le suspense est insoutenable n’est-ce pas ?
 
 Abordons le concept de **Multi-Level Memory**, ou « **mémoire à plusieurs niveaux** » en français.
-Contrairement aux autres mémoires, ici la valeur binaire (0 ou 1) n’est pas à
-proprement « physique », mais est plutôt **calculée**.
+
+Les mémoires actuelles sont basées sur des valeurs discrètes.
 Par exemple la SRAM se base sur une porte logique électronique et la Flash NAND,
 quant à elle, se base sur une porte logique physique, chacune n’ayant que **deux
-états possibles**.
+états possibles** traduit en 0 et 1.
 
 Dans notre cas, la ReRAM vient augmenter sa résistivité grâce à une certaine
-impulsion électrique et la **lecture se fait en calculant cette résistivité**.
-Cela veut dire qu’en soit, nous n’obtenons pas un 0 ou un 1, mais une valeur
-plus large comme $100\Omega$.
+impulsion électrique et la **lecture se fait en calculant cette résistivité** en
+mesurant le courant et la tension.
+Cela veut dire que nous avons un résultat qui est une valeur continue en sortie.
+Nous pouvons ainsi obtenir, par exemple, des valeurs entre $0\Omega$ et $100\Omega$.
 
 Plus haut, nous évoquions les tensions **Set** et **Reset**.
 En réalité, il peut y avoir **différentes tensions Set**, permettant chacune un
@@ -135,7 +137,7 @@ Et inversement, pouvoir différencier 2x plus de valeurs sur une cellule signifi
 Donc ici nous avons une cellule avec une taille de 2 bits.
 
 Si nous sommes capables de différencier 8 valeurs sur une cellule,
-cette dernière possèderait une taille de 3 bits, et ainsi de suite.
+cette dernière possèdent une taille de 3 bits, et ainsi de suite.
 
 
 Autrement dit, pouvoir lire plusieurs niveaux de résistivité permet de démultiplier
@@ -166,7 +168,7 @@ mémoire non-volatile la plus répandu (carte SD, SSD, etc...).
 | Endurance | Entre 10x et 10⁷x supérieur |
 | Dimension | 2x plus dense |
 | Rétention | Equivalent (10 ans) |
-| Plage d'éfficacité optimale | Entre 50°C et 120°C (La Flash NAND n'en a pas) |
+| Plage d'efficacité optimale | Entre 50°C et 120°C (La Flash NAND n'en a pas) |
 
 Reprenons ce tableau point par point pour le comprendre :
 
@@ -198,7 +200,7 @@ et est même plus compacte que les autres mémoires.
 Cependant, la ReRAM possède une plage de **température optimale de fonctionnement
 allant de 50°C à 120°C**.
 La ReRAM possède une durée de rétention de l’information de 10 ans quand elle
-est dans ses conditions optimales (aux allant-tours de 80°C),
+est dans ses conditions optimales (aux alentours de 80°C),
 ce qui est équivalent à celle de la NAND.
 
 
@@ -241,8 +243,8 @@ Cependant, il reste encore plusieurs points à améliorer pour que la ReRAM
 soit réellement intéressante dans ce cas de figure.
 
 Que ce soit au niveau des performances, principale raison de l’utilisation de
-la SRAM, où cette dernière est environ 10x supérieur ou au niveau de son
-endurance qui est nettement inférieur, la SRAM ayant une endurance $>10^{16}$.
+la SRAM dont les accès mémoires sont environ 10x plus rapide que ceux de la
+ReRAM, ou au niveau de son endurance qui avoisine les $>10^{16}$ réécritures.
 
 ### Capteurs et objets connectés
 
