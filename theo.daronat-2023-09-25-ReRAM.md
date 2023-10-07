@@ -5,9 +5,9 @@ Plus compact et beaucoup moins énergivore que les autres mémoires concurrentes
 
 date: 2023-09-25T14:41:00+02:00
 
-author: "DARONAT Théo"
+author: "Théo DARONAT"
 
-tags: ["ReRAM", "mémoire", "news"]
+tags: ["ReRAM", "RRAM", "mémoire", "news"]
 
 ## Show the Table Of Content
 showToc: true
@@ -45,8 +45,10 @@ d’**oxyde métallique**.
 
 Ce métal est un matériau conducteur, le courant peut facilement passer entre
 deux morceaux liés.
-L’oxyde métallique, quant à lui, est un **matériau isolant** dit **dialectrique**
+L’oxyde métallique, quant à lui, est un **matériau isolant** dit **diélectrique**
 (ne contenant pas de charge électrique).
+
+<img src="/images/theo.daronat/theo.daronat-2023-10-04-ReRAM_cell/Cellule_ReRAM.png" alt="Cellule ReRAM" width="300" height="300">
 
 C’est grâce au procédé d’[**oxydo-réduction**](https://fr.wikipedia.org/wiki/R%C3%A9action_d%27oxydor%C3%A9duction)
 (redox), une réaction chimique de laquelle résulte un transfert d'électrons
@@ -59,12 +61,16 @@ des électrodes qui perdent des électrons.
 Ces dernier sont récupéré par l'oxyde métalique, créant un filament reliant les
 deux électrodes.
 
+<img style="vertical-align:middle" src="/images/theo.daronat/theo.daronat-2023-10-04-ReRAM_cell/Cellule_ReRAM_Electron.png" alt="Cellule ReRAM Electron" width="300" height="300">
+&rarr;
+<img style="vertical-align:middle" src="/images/theo.daronat/theo.daronat-2023-10-04-ReRAM_cell/Cellule_ReRAM_Filament.png" alt="Cellule ReRAM Filament" width="300" height="300">
 
 Voilà comment cela fonctionne :
+
 - Quand une tension électrique précise est appliquée (tension **Set**) au niveau
-  des électrodes, un **filament se crée** dans l’oxyde métallique, reliant
-  les deux électrodes, faisant passer la cellule d’un état **très résistant**
-  à un état peu **résistant**.
+des électrodes, un **filament se crée** dans l’oxyde métallique, reliant
+les deux électrodes, faisant passer la cellule d’un état **très résistant**
+à un état **peu résistant**.
 - Et inversement, lorsqu’une autre tension précise est appliquée (tension **Reset**),
 le **filament se brise** et la cellule repasse à un état **très résistant**.
 
@@ -107,16 +113,17 @@ au rang de révolution, si ce n’est de meilleur performance ?
 Le suspense est insoutenable n’est-ce pas ?
 
 Abordons le concept de **Multi-Level Memory**, ou « **mémoire à plusieurs niveaux** » en français.
-Contrairement aux autres mémoires, ici la valeur binaire (0 ou 1) n’est pas à
-proprement « physique », mais est plutôt **calculée**.
+
+Les mémoires actuelles sont basées sur des valeurs discrètes.
 Par exemple la SRAM se base sur une porte logique électronique et la Flash NAND,
 quant à elle, se base sur une porte logique physique, chacune n’ayant que **deux
-états possibles**.
+états possibles** traduit en 0 et 1.
 
 Dans notre cas, la ReRAM vient augmenter sa résistivité grâce à une certaine
-impulsion électrique et la **lecture se fait en calculant cette résistivité**.
-Cela veut dire qu’en soit, nous n’obtenons pas un 0 ou un 1, mais une valeur
-plus large comme $100\Omega$.
+impulsion électrique et la **lecture se fait en calculant cette résistivité** en
+mesurant le courant et la tension.
+Cela veut dire que nous avons un résultat qui est une valeur continue en sortie.
+Nous pouvons ainsi obtenir, par exemple, des valeurs entre $0\Omega$ et $100\Omega$.
 
 Plus haut, nous évoquions les tensions **Set** et **Reset**.
 En réalité, il peut y avoir **différentes tensions Set**, permettant chacune un
@@ -135,15 +142,18 @@ Et inversement, pouvoir différencier 2x plus de valeurs sur une cellule signifi
 Donc ici nous avons une cellule avec une taille de 2 bits.
 
 Si nous sommes capables de différencier 8 valeurs sur une cellule,
-cette dernière possèderait une taille de 3 bits, et ainsi de suite.
+cette dernière possèdent une taille de 3 bits, et ainsi de suite.
 
 
 Autrement dit, pouvoir lire plusieurs niveaux de résistivité permet de démultiplier
 l’espace de stockage d’une cellule, et ainsi multiplier la taille de la mémoire
 de la ReRAM sans augmenter sa taille physique.
 
+La découverte de cette propiété est assez récente et les enjeux actuellement
+sont d'arriver à stabiliser et d'augmenter la fiabilité du processus.
 
-## Avantages et inconvénients
+
+## Avantages et inconvénients, une étude comparative avec la Flash NAND
 
 Voyons maintenant les avantages et les inconvénients que la ReRAM propose.
 Quel est le réel intérêt de se compliquer la vie à créer une nouvelle façon de
@@ -152,11 +162,20 @@ stocker de la donnée ?
 **ATTENTION** : Les données utilisées dans cette partie peuvent être
 potentiellement obsolètes car les gros constructeurs ne révèlent rien de leurs
 avancés et la recherche autour du sujet est toujours active.
-Les données sur lesquelles nous nous appuierons date de 2020 pour la plupart.
+Les données sur lesquelles nous nous appuierons date de 2020 pour la plupart et se
+base sur des ReRAM à cellule de 1 bit.
 
 Nous allons comparer les caractéristiques de la ReRAM avec la mémoire
 [**Flash NAND**](https://fr.wikipedia.org/wiki/M%C3%A9moire_flash),
 mémoire non-volatile la plus répandu (carte SD, SSD, etc...).
+
+Pour se faire, nous allons comparer les caractéristiques d'un SSD
+(le "[870 EVO 1To](https://www.samsung.com/fr/memory-storage/sata-ssd/870-evo-1tb-sata-3-2-5-ssd-mz-77e1t0b-eu/)"
+de chez samsung sorti en 2021) et de ce que pourrait être son équivalent à base
+de ReRAM.
+
+
+
 
 | Caractéristiques Analysés | Caractéristiques de la ReRAM par rapport à la Flash NAND |
 | ------------------------- | ------------------------- |
@@ -166,7 +185,7 @@ mémoire non-volatile la plus répandu (carte SD, SSD, etc...).
 | Endurance | Entre 10x et 10⁷x supérieur |
 | Dimension | 2x plus dense |
 | Rétention | Equivalent (10 ans) |
-| Plage d'éfficacité optimale | Entre 50°C et 120°C (La Flash NAND n'en a pas) |
+| Plage d'efficacité optimale | Entre 50°C et 120°C (La Flash NAND n'en a pas) |
 
 Reprenons ce tableau point par point pour le comprendre :
 
@@ -193,13 +212,31 @@ En comparaison, la mémoire Flash NAND à une endurance de $10^5$ réécritures.
 De part ses **matériaux plutôt simple**, la ReRAM ne sera pas très cher à fabriqué
 et est même plus compacte que les autres mémoires.
 
-#### Efficacité et Rétention
+#### Efficacité et stabilité
 
-Cependant, la ReRAM possède une plage de **température optimale de fonctionnement
+La ReRAM possède une plage de **température optimale de fonctionnement
 allant de 50°C à 120°C**.
-La ReRAM possède une durée de rétention de l’information de 10 ans quand elle
-est dans ses conditions optimales (aux allant-tours de 80°C),
-ce qui est équivalent à celle de la NAND.
+Qu'est-ce que cela implique ?
+
+Lorsqu'elle est atteint cette température optimale, aux alentours de 80°C, la
+ReRAM possède toutes les caractéristiques cités précédemments.
+Dans le cas contraire, ces dernières sont impacté (nous n'avons malheureusement
+pas de données précises pour quantifier l'impacte que cela peut avoir).
+
+Cependant, cela implique un problème un peu plus important : **Le stockage de
+la ReRAM est instable**. (Différent de celui concernant le Multi-Level Memory)
+
+Dans ses conditions optimales, la ReRAM possède une durée de rétention de
+l’information de 10 ans, ce qui est équivalent à celle de la NAND.
+
+Mais les matériaux dont sont composées les cellules peuvent être altérés avec le
+temps et ainsi détériorer les données stockées, matérialisés par des filaments
+de l'ordre du nanomètre au sein des cellules.
+
+De plus, les tensions de lecture, aussi faible soient-ils, viennent stresser
+ces filaments et ainsi les détériorer un peu plus au fil du temps.
+Ce problème de stabilité est l'un des principaux axes de recherche actuel sur
+le sujet.
 
 
 ### Pour récapituler
@@ -208,17 +245,10 @@ La ReRAM est en de nombreux points très performante, que ce soit la consommatio
 d’énergie, les performances de lecture et d’écriture ainsi que son endurance.
 
 Tout ceci est pondéré par une zone de température optimale allant
-de 50 à 120°C.
+de 50 à 120°C et une instabilité de la durée de stockage.
 
 
 ## Les possibilités pour le futur des technologies
-
-Alors pourquoi n'est-elle pas encore sur le marché ?
-
-C'est majoritairement dû à un problème de stabilité au niveau du stockage.
-Les matériaux dont sont composées les cellules peuvent être altérés avec le
-temps et ainsi détériorer les données stockées.
-C'est l'un des principaux axes de recherches actuel sur le sujet.
 
 Mais dans le cas où ce problème serait résolu, quels pourraient être ses
 applications ?
@@ -241,8 +271,8 @@ Cependant, il reste encore plusieurs points à améliorer pour que la ReRAM
 soit réellement intéressante dans ce cas de figure.
 
 Que ce soit au niveau des performances, principale raison de l’utilisation de
-la SRAM, où cette dernière est environ 10x supérieur ou au niveau de son
-endurance qui est nettement inférieur, la SRAM ayant une endurance $>10^{16}$.
+la SRAM dont les accès mémoires sont environ 10x plus rapide que ceux de la
+ReRAM, ou au niveau de son endurance qui avoisine les $>10^{16}$ réécritures.
 
 ### Capteurs et objets connectés
 
@@ -265,7 +295,7 @@ utiliser comme espace de stockage ultra compacte.
 
 Son utilisation dans des data centers pour remplacer les mémoires de même type
 semble parfaite.
-En plus des avantages sités dans l’exemple ci-dessus qui s’appliquent aussi ici,
+En plus des avantages cités dans l’exemple ci-dessus qui s’appliquent aussi ici,
 les data centers produise une grande quantité de la chaleur, et c’est exactement
 ce qu’aime la ReRAM pour fonctionner dans des conditions optimales.
 Permettant ainsi de réduire leur taille, leur consommation ainsi que de gagner
