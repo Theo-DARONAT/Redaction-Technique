@@ -16,7 +16,7 @@ showToc: true
 math: true
 
 ## If it's draft (true), it will not be published
-draft: false
+draft: fasle
 ---
 
 
@@ -47,8 +47,9 @@ Ce métal est un matériau conducteur, le courant peut facilement passer entre
 deux morceaux liés.
 L’oxyde métallique, quant à lui, est un **matériau isolant** dit **diélectrique**
 (ne contenant pas de charge électrique).
-
-<img src="/images/theo.daronat/theo.daronat-2023-10-04-ReRAM_cell/Cellule_ReRAM.png" alt="Cellule ReRAM" width="300" height="300">
+<center>
+<img align="middle" src="/images/theo.daronat/theo.daronat-2023-10-04-ReRAM_cell/Cellule_ReRAM.png" alt="Cellule ReRAM" width="300" height="300">
+</center>
 
 C’est grâce au procédé d’[**oxydo-réduction**](https://fr.wikipedia.org/wiki/R%C3%A9action_d%27oxydor%C3%A9duction)
 (redox), une réaction chimique de laquelle résulte un transfert d'électrons
@@ -93,16 +94,16 @@ Mais, on dirait presque du binaire…
 Et en effet, ça l’est !
 Nous avons notre système de mémoire sur lequel nous pouvons écrire et lire.
 
-### Pour récapituler
-
-L’état de résistance faible (quand le filament est créé,
-via une tension Set) représente le ‘1’, le courant arrive facilement à
-traverser les deux électrodes.
-
-A l’inverse, l’état de résistance élevé (quand le filament se brise, via une
-tension Reset) représente le ‘0’, le courant ne passe presque plus.
-
-Pour lire la mémoire, il suffit de mesurer la résistance pour savoir dans quel état on est.
+> #### Pour récapituler
+>
+> L’état de résistance faible (quand le filament est créé,
+> via une tension Set) représente le ‘1’, le courant arrive facilement à
+> traverser les deux électrodes.
+>
+> A l’inverse, l’état de résistance élevé (quand le filament se brise, via une
+> tension Reset) représente le ‘0’, le courant ne passe presque plus.
+>
+> Pour lire la mémoire, il suffit de mesurer la résistance pour savoir dans quel état on est.
 
 
 ## Multi-Level Memory
@@ -153,7 +154,7 @@ La découverte de cette propiété est assez récente et les enjeux actuellement
 sont d'arriver à stabiliser et d'augmenter la fiabilité du processus.
 
 
-## Avantages et inconvénients, une étude comparative avec la Flash NAND
+## Avantages et inconvénients : Etude comparative
 
 Voyons maintenant les avantages et les inconvénients que la ReRAM propose.
 Quel est le réel intérêt de se compliquer la vie à créer une nouvelle façon de
@@ -163,7 +164,7 @@ stocker de la donnée ?
 potentiellement obsolètes car les gros constructeurs ne révèlent rien de leurs
 avancés et la recherche autour du sujet est toujours active.
 Les données sur lesquelles nous nous appuierons date de 2020 pour la plupart et se
-base sur des ReRAM à cellule de 1 bit.
+base sur des ReRAM ne possédant pas la technologie Multi-Level Memory.
 
 Nous allons comparer les caractéristiques de la ReRAM avec la mémoire
 [**Flash NAND**](https://fr.wikipedia.org/wiki/M%C3%A9moire_flash),
@@ -174,8 +175,17 @@ Pour se faire, nous allons comparer les caractéristiques d'un SSD
 de chez samsung sorti en 2021) et de ce que pourrait être son équivalent à base
 de ReRAM.
 
+Ce SSD possède une vitesse de lecture de 560 Mo/s ainsi qu'une vitesse
+d'écriture de 530 Mo/s pour une consommation moyenne de 2.5 Watts
+Il peut être entièrement réécrit jusqu'à 10.000 fois et a une rétention de l'information
+de 10 ans, propriétés intrinsèques à la technologie Flash NAND.
 
+Maintenant, voyons ce que cela donnerai en remplaçant la mémoire Flash NAND par
+de la ReRAM.
+Appelons-le *SReD* pour **S**olid **Re**sitive **D**rive (cette appelation n'a
+rien d'officiel et n'est pas d'origine protégé).
 
+Voici un tableau comparatif des deux technologies :
 
 | Caractéristiques Analysés | Caractéristiques de la ReRAM par rapport à la Flash NAND |
 | ------------------------- | ------------------------- |
@@ -196,10 +206,15 @@ concurrentes est sa **très faible consommation d’énergie**.
 Que ce soit en termes de lecture ou d’écriture, la ReRAM est bien moins
 énergivore que les autres types de mémoires présents sur le marcher actuellement.
 
+Notre *SReD* aurait une consommation moyenne de 0.125 Watts (125 mW).
+
 #### Performance
 
 Pour ce qui est des performances, la ReRAM fait partie des mémoires les plus
 efficaces avec un temps de lecture et d’écriture **inférieur à 10ns**.
+
+Le *SReD* aurait une vitesse de 56 Go/s en lecture et de 530 Go/s en écriture.
+Il ne reste plus qu'à trouver un cable permettant un tel débit.
 
 #### Endurance
 
@@ -212,19 +227,26 @@ En comparaison, la mémoire Flash NAND à une endurance de $10^5$ réécritures.
 De part ses **matériaux plutôt simple**, la ReRAM ne sera pas très cher à fabriqué
 et est même plus compacte que les autres mémoires.
 
+Pour les mêmes dimensions, le *SReD* ferait 2To.
+Oui, ça reviendrait à pouvoir l'écrire entièrement en l'espace de 4 secondes.
+
+En prennant en compte une technologie Multi-Level Memory à 8 états (3 bits sur
+une cellule, ce qui est fort envisageable), le *SReD* pourrait monter à 6To de
+stockage pour la même dimension.
+
 #### Efficacité et stabilité
 
 La ReRAM possède une plage de **température optimale de fonctionnement
 allant de 50°C à 120°C**.
 Qu'est-ce que cela implique ?
 
-Lorsqu'elle est atteint cette température optimale, aux alentours de 80°C, la
+Lorsqu'elle atteint cette température optimale, aux alentours de 80°C, la
 ReRAM possède toutes les caractéristiques cités précédemments.
 Dans le cas contraire, ces dernières sont impacté (nous n'avons malheureusement
 pas de données précises pour quantifier l'impacte que cela peut avoir).
 
 Cependant, cela implique un problème un peu plus important : **Le stockage de
-la ReRAM est instable**. (Différent de celui concernant le Multi-Level Memory)
+la ReRAM est instable**.
 
 Dans ses conditions optimales, la ReRAM possède une durée de rétention de
 l’information de 10 ans, ce qui est équivalent à celle de la NAND.
@@ -239,16 +261,19 @@ Ce problème de stabilité est l'un des principaux axes de recherche actuel sur
 le sujet.
 
 
-### Pour récapituler
-
-La ReRAM est en de nombreux points très performante, que ce soit la consommation
-d’énergie, les performances de lecture et d’écriture ainsi que son endurance.
-
-Tout ceci est pondéré par une zone de température optimale allant
-de 50 à 120°C et une instabilité de la durée de stockage.
+> #### Pour récapituler
+>
+> La ReRAM est en de nombreux points très performante, que ce soit la consommation
+> d’énergie, les performances de lecture, d’écriture ainsi que son endurance.
+>
+> Tout ceci est pondéré par une zone de température optimale allant
+> de 50 à 120°C et une instabilité de la durée de stockage.
 
 
 ## Les possibilités pour le futur des technologies
+
+Vous l'aurez compris, actuellement le mot d'ordre pour la ReRAM est
+l'instabilité sur différents aspects.
 
 Mais dans le cas où ce problème serait résolu, quels pourraient être ses
 applications ?
